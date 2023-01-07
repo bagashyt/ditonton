@@ -1,4 +1,4 @@
-import 'package:ditonton/data/models/genre_model.dart';
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetail extends Equatable {
@@ -32,7 +32,7 @@ class TvDetail extends Equatable {
   final bool adult;
   final String backdropPath;
   final DateTime firstAirDate;
-  final List<GenreModel> genres;
+  final List<Genre> genres;
   final String homepage;
   final int id;
   final bool inProduction;
