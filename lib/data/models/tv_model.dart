@@ -19,7 +19,7 @@ class TvModel extends Equatable {
   });
 
   final String backdropPath;
-  final DateTime firstAirDate;
+  final String firstAirDate;
   final List<int> genreIds;
   final int id;
   final String name;
@@ -33,9 +33,9 @@ class TvModel extends Equatable {
   final int voteCount;
 
   factory TvModel.fromJson(Map<String, dynamic> json) => TvModel(
-        backdropPath:
-            json["backdrop_path"] == null ? null : json["backdrop_path"],
-        firstAirDate: DateTime.parse(json["first_air_date"]),
+        backdropPath: json["backdrop_path"] ??
+            "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg",
+        firstAirDate: json["first_air_date"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
         name: json["name"],
@@ -51,8 +51,7 @@ class TvModel extends Equatable {
 
   Map<String, dynamic> toJson() => {
         "backdrop_path": backdropPath,
-        "first_air_date":
-            "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
+        "first_air_date": firstAirDate,
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "id": id,
         "name": name,

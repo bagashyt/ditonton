@@ -22,10 +22,10 @@ class Tv extends Equatable {
     required this.overview,
     required this.posterPath,
     required this.name,
-});
+  });
 
   String? backdropPath;
-  DateTime? firstAirDate;
+  String? firstAirDate;
   List<int>? genreIds;
   int? id;
   String? name;
@@ -40,18 +40,18 @@ class Tv extends Equatable {
 
   @override
   List<Object?> get props => [
-    backdropPath,
-    firstAirDate,
-    genreIds,
-    id,
-    name,
-    originCountry,
-    originalLanguage,
-    originalName,
-    overview,
-    popularity,
-    posterPath,
-    voteAverage,
-    voteCount
-  ];
+        backdropPath,
+        firstAirDate,
+        genreIds,
+        id,
+        name,
+        originCountry,
+        originalLanguage,
+        originalName,
+        overview,
+        popularity,
+        posterPath,
+        voteAverage,
+        voteCount
+      ];
 }

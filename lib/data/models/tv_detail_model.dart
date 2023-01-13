@@ -31,13 +31,13 @@ class TvDetailResponse extends Equatable {
 
   final bool adult;
   final String backdropPath;
-  final DateTime firstAirDate;
+  final String firstAirDate;
   final List<GenreModel> genres;
   final String homepage;
   final int id;
   final bool inProduction;
   final List<String> languages;
-  final DateTime lastAirDate;
+  final String lastAirDate;
   final String name;
   final dynamic nextEpisodeToAir;
   final int numberOfEpisodes;
@@ -56,27 +56,29 @@ class TvDetailResponse extends Equatable {
   factory TvDetailResponse.fromJson(Map<String, dynamic> json) =>
       TvDetailResponse(
         adult: json["adult"],
-        backdropPath: json["backdrop_path"],
-        firstAirDate: DateTime.parse(json["first_air_date"]),
+        backdropPath: json["backdrop_path"] ??
+            "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg",
+        firstAirDate: json["first_air_date"] ?? '-',
         genres: List<GenreModel>.from(
             json["genres"].map((x) => GenreModel.fromJson(x))),
         homepage: json["homepage"],
         id: json["id"],
         inProduction: json["in_production"],
         languages: List<String>.from(json["languages"].map((x) => x)),
-        lastAirDate: DateTime.parse(json["last_air_date"]),
+        lastAirDate: json["last_air_date"] ?? "-",
         name: json["name"],
-        nextEpisodeToAir: json["next_episode_to_air"],
-        numberOfEpisodes: json["number_of_episodes"],
-        numberOfSeasons: json["number_of_seasons"],
-        originalLanguage: json["original_language"],
-        originalName: json["original_name"],
-        overview: json["overview"],
-        popularity: json["popularity"].toDouble(),
-        posterPath: json["poster_path"],
-        status: json["status"],
-        tagline: json["tagline"],
-        type: json["type"],
+        nextEpisodeToAir: json["next_episode_to_air"] ?? "-",
+        numberOfEpisodes: json["number_of_episodes"] ?? "-",
+        numberOfSeasons: json["number_of_seasons"] ?? "-",
+        originalLanguage: json["original_language"] ?? "-",
+        originalName: json["original_name"] ?? "-",
+        overview: json["overview"] ?? "-",
+        popularity: json["popularity"].toDouble() ?? 0.0,
+        posterPath: json["poster_path"] ??
+            "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg",
+        status: json["status"] ?? "-",
+        tagline: json["tagline"] ?? "-",
+        type: json["type"] ?? "-",
         voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],
       );
@@ -84,15 +86,13 @@ class TvDetailResponse extends Equatable {
   Map<String, dynamic> toJson() => {
         "adult": adult,
         "backdrop_path": backdropPath,
-        "first_air_date":
-            "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
+        "first_air_date": firstAirDate,
         "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
         "homepage": homepage,
         "id": id,
         "in_production": inProduction,
         "languages": List<dynamic>.from(languages.map((x) => x)),
-        "last_air_date":
-            "${lastAirDate.year.toString().padLeft(4, '0')}-${lastAirDate.month.toString().padLeft(2, '0')}-${lastAirDate.day.toString().padLeft(2, '0')}",
+        "last_air_date": lastAirDate,
         "name": name,
         "next_episode_to_air": nextEpisodeToAir,
         "number_of_episodes": numberOfEpisodes,

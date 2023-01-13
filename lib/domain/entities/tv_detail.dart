@@ -2,7 +2,6 @@ import 'package:ditonton/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetail extends Equatable {
-
   TvDetail({
     required this.adult,
     required this.backdropPath,
@@ -31,13 +30,13 @@ class TvDetail extends Equatable {
 
   final bool adult;
   final String backdropPath;
-  final DateTime firstAirDate;
+  final String firstAirDate;
   final List<Genre> genres;
   final String homepage;
   final int id;
   final bool inProduction;
   final List<String> languages;
-  final DateTime lastAirDate;
+  final String lastAirDate;
   final String name;
   final dynamic nextEpisodeToAir;
   final int numberOfEpisodes;
@@ -55,28 +54,28 @@ class TvDetail extends Equatable {
 
   @override
   List<Object?> get props => [
-    adult,
-    backdropPath,
-    firstAirDate,
-    genres,
-    homepage,
-    id,
-    inProduction,
-    languages,
-    lastAirDate,
-    name,
-    nextEpisodeToAir,
-    numberOfEpisodes,
-    numberOfSeasons,
-    originalLanguage,
-    originalName,
-    overview,
-    popularity,
-    posterPath,
-    status,
-    tagline,
-    type,
-    voteAverage,
-    voteCount
-  ];
+        adult,
+        backdropPath,
+        firstAirDate,
+        genres,
+        homepage,
+        id,
+        inProduction,
+        languages,
+        lastAirDate,
+        name,
+        nextEpisodeToAir,
+        numberOfEpisodes,
+        numberOfSeasons,
+        originalLanguage,
+        originalName,
+        overview,
+        popularity,
+        posterPath,
+        status,
+        tagline,
+        type,
+        voteAverage,
+        voteCount
+      ];
 }

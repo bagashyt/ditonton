@@ -1,11 +1,10 @@
-import 'dart:ffi';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/show_type.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/tv_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {
@@ -17,7 +16,7 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final id = showType == ShowType.movie ? movie?.id : tv?.id as Int;
+    final id = showType == ShowType.movie ? movie?.id : tv?.id;
     final title = showType == ShowType.movie ? movie?.title : tv?.name as String;
     final overview = showType == ShowType.movie ? movie?.overview : tv?.overview as String;
     final posterPath = showType == ShowType.movie ? movie?.posterPath : tv?.posterPath as String;
@@ -27,7 +26,7 @@ class MovieCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            MovieDetailPage.ROUTE_NAME,
+            showType == ShowType.movie ? MovieDetailPage.ROUTE_NAME : TvDetailPage.ROUTE_NAME,
             arguments: id,
           );
         },
