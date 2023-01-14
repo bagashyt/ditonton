@@ -45,7 +45,7 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE  $_tblTvWatchlist (
         id INTEGER PRIMARY KEY,
-        title TEXT,
+        name TEXT,
         overview TEXT,
         posterPath TEXT
       );
@@ -94,6 +94,7 @@ class DatabaseHelper {
       return null;
     }
   }
+
   Future<Map<String, dynamic>?> getTvById(int id) async {
     final db = await database;
     final results = await db!.query(
@@ -111,10 +112,12 @@ class DatabaseHelper {
 
   Future<List<Map<String, dynamic>>> getMovieWatchlist() async {
     final db = await database;
-    final List<Map<String, dynamic>> results = await db!.query(_tblMovieWatchlist);
+    final List<Map<String, dynamic>> results =
+        await db!.query(_tblMovieWatchlist);
 
     return results;
   }
+
   Future<List<Map<String, dynamic>>> getTvWatchlist() async {
     final db = await database;
     final List<Map<String, dynamic>> results = await db!.query(_tblTvWatchlist);
