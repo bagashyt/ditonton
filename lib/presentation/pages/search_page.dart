@@ -2,7 +2,7 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/show_type.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
+import 'package:ditonton/presentation/provider/search_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,11 +28,11 @@ class SearchPage extends StatelessWidget {
               onSubmitted: (query) {
                 switch (showType) {
                   case ShowType.movie:
-                    Provider.of<MovieSearchNotifier>(context, listen: false)
+                    Provider.of<SearchNotifier>(context, listen: false)
                         .fetchMovieSearch(query);
                     break;
                   case ShowType.tv:
-                    Provider.of<MovieSearchNotifier>(context, listen: false)
+                    Provider.of<SearchNotifier>(context, listen: false)
                         .fetchTvSearch(query);
                     break;
                 }
@@ -49,7 +49,7 @@ class SearchPage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-            Consumer<MovieSearchNotifier>(
+            Consumer<SearchNotifier>(
               builder: (context, data, child) {
                 if (data.state == RequestState.Loading) {
                   return Center(

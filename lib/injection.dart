@@ -30,7 +30,7 @@ import 'package:ditonton/domain/usecases/tv/search_tv.dart';
 import 'package:ditonton/presentation/provider/home_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
+import 'package:ditonton/presentation/provider/search_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_tv_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
@@ -79,7 +79,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => MovieSearchNotifier(
+    () => SearchNotifier(
       searchMovies: locator(),
       searchTv: locator(),
     ),
