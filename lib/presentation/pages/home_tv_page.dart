@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/presentation/pages/popular_tv_page.dart';
-import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import '../../common/constants.dart';
 import '../../common/state_enum.dart';
 import '../../domain/entities/tv.dart';
 import '../provider/tv_list_notifier.dart';
-import 'about_page.dart';
 
 class HomeTvPage extends StatefulWidget {
   @override
