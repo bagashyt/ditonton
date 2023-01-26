@@ -52,7 +52,8 @@ class MovieDetailResponse extends Equatable {
   factory MovieDetailResponse.fromJson(Map<String, dynamic> json) =>
       MovieDetailResponse(
         adult: json["adult"],
-        backdropPath: json["backdrop_path"],
+        backdropPath: json["backdrop_path"] ??
+            "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg",
         budget: json["budget"],
         genres: List<GenreModel>.from(
             json["genres"].map((x) => GenreModel.fromJson(x))),
@@ -63,7 +64,8 @@ class MovieDetailResponse extends Equatable {
         originalTitle: json["original_title"],
         overview: json["overview"],
         popularity: json["popularity"].toDouble(),
-        posterPath: json["poster_path"],
+        posterPath: json["poster_path"] ??
+            "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg",
         releaseDate: json["release_date"],
         revenue: json["revenue"],
         runtime: json["runtime"],
@@ -117,7 +119,6 @@ class MovieDetailResponse extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         adult,
         backdropPath,

@@ -1,18 +1,23 @@
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/common/show_type.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
+import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/presentation/provider/search_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/search';
+  final ShowType showType;
+
+  const SearchPage({Key? key, required this.showType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: Text(showType == ShowType.movie ? 'Search Movie' : 'Search Tv'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,8 +26,16 @@ class SearchPage extends StatelessWidget {
           children: [
             TextField(
               onSubmitted: (query) {
-                Provider.of<MovieSearchNotifier>(context, listen: false)
-                    .fetchMovieSearch(query);
+                switch (showType) {
+                  case ShowType.movie:
+                    Provider.of<SearchNotifier>(context, listen: false)
+                        .fetchMovieSearch(query);
+                    break;
+                  case ShowType.tv:
+                    Provider.of<SearchNotifier>(context, listen: false)
+                        .fetchTvSearch(query);
+                    break;
+                }
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
@@ -36,24 +49,44 @@ class SearchPage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-            Consumer<MovieSearchNotifier>(
+            Consumer<SearchNotifier>(
               builder: (context, data, child) {
                 if (data.state == RequestState.Loading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (data.state == RequestState.Loaded) {
-                  final result = data.searchResult;
-                  return Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      itemBuilder: (context, index) {
-                        final movie = data.searchResult[index];
-                        return MovieCard(movie);
-                      },
-                      itemCount: result.length,
-                    ),
-                  );
+                  late final List<Tv> tv;
+                  switch (showType) {
+                    case ShowType.movie:
+                      final movie = data.searchMovieResult;
+                      return Expanded(
+                        child: ListView.builder(
+                          itemBuilder: ((context, index) {
+                            final _movie = movie[index];
+                            return MovieCard(
+                              showType: showType,
+                              movie: _movie,
+                            );
+                          }),
+                          itemCount: movie.length,
+                        ),
+                      );
+                    case ShowType.tv:
+                      tv = data.searchTvResult;
+                      return Expanded(
+                        child: ListView.builder(
+                          itemBuilder: ((context, index) {
+                            final _tv = tv[index];
+                            return MovieCard(
+                              showType: showType,
+                              tv: _tv,
+                            );
+                          }),
+                          itemCount: tv.length,
+                        ),
+                      );
+                  }
                 } else {
                   return Expanded(
                     child: Container(),

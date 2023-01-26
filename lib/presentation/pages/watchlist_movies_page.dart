@@ -1,3 +1,4 @@
+import 'package:ditonton/common/show_type.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
@@ -51,7 +52,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = data.watchlistMovies[index];
-                  return MovieCard(movie);
+                  return MovieCard(movie: movie, showType: ShowType.movie,);
                 },
                 itemCount: data.watchlistMovies.length,
               );
