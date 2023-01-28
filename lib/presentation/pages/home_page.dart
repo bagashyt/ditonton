@@ -6,6 +6,7 @@ import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_tv_page.dart';
 import 'package:ditonton/presentation/provider/home_notifier.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,6 +47,13 @@ class HomePage extends StatelessWidget {
     return AppBar(
       title: Text('Ditonton'),
       actions: [
+        IconButton(
+          onPressed: () {
+            FirebaseCrashlytics.instance.crash();
+            Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
+          },
+          icon: Icon(Icons.warning),
+        ),
         IconButton(
           onPressed: () {
             Navigator.pushNamed(

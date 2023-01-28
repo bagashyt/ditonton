@@ -41,6 +41,9 @@ dependencies:
 
   about:
     path: about
+  firebase_core: ^2.4.1
+  firebase_crashlytics: ^3.0.11
+  firebase_analytics: ^10.1.0
 
 dev_dependencies:
   mockito: ^5.0.8
